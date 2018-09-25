@@ -1,4 +1,4 @@
-package prs.db;
+package prs.business;
 
 import java.time.LocalDate;
 

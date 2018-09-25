@@ -1,4 +1,4 @@
-package prs.db;
+package prs.business;
 
 public class Vendor {
 	private int id;
@@ -10,14 +10,14 @@ public class Vendor {
 	private String zip;
 	private String phoneNumber;
 	private String email;
-	private int isPreApproved;
+	private boolean preApproved;
 	
 	public Vendor() {
 		
 	}
 
 	public Vendor(int id, String code, String name, String address, String city, String state, String zip,
-			String phoneNumber, String email, int isPreApproved) {
+			String phoneNumber, String email, boolean isPreApproved) {
 		this.id = id;
 		this.code = code;
 		this.name = name;
@@ -27,7 +27,7 @@ public class Vendor {
 		this.zip = zip;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
-		this.isPreApproved = isPreApproved;
+		this.preApproved = isPreApproved;
 	}
 
 	public int getId() {
@@ -102,13 +102,12 @@ public class Vendor {
 		this.email = email;
 	}
 
-	public int getIsPreApproved() {
-		return isPreApproved;
+	public boolean isPreApproved() {
+		return preApproved;
 	}
 
-	public void setIsPreApproved(int isPreApproved) {
-		this.isPreApproved = isPreApproved;
+	public void setPreApproved(boolean preApproved) {
+		this.preApproved = preApproved;
 	}
-	
 	
 }

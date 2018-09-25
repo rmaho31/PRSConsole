@@ -1,4 +1,4 @@
-package prs.db;
+package prs.business;
 
 public class PurchaseRequestLineItem {
 	private int id;

@@ -1,4 +1,8 @@
-package prs.db;
+package prs.business;
+
+import java.time.format.DateTimeFormatter;
+
+import prs.utility.StringUtils;
 
 public class Product {
 	private int id;
@@ -77,6 +81,14 @@ public class Product {
 
 	public void setPhotoPath(String photoPath) {
 		this.photoPath = photoPath;
+	}
+	
+	@Override
+	public String toString() {
+		return StringUtils.padWithSpaces("  "  + id, 10) + StringUtils.padWithSpaces(vendorID+"     ", 15) +
+			   StringUtils.padWithSpaces(partNumber, 15) + StringUtils.padWithSpaces(name+"", 55) + 
+			   StringUtils.padWithSpaces(price+"", 15) + StringUtils.padWithSpaces(unit+"", 15) +
+			   StringUtils.padWithSpaces(photoPath+"", 35) +"\n";
 	}
 	
 	
