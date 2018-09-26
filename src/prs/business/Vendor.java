@@ -1,5 +1,7 @@
 package prs.business;
 
+import prs.utility.StringUtils;
+
 public class Vendor {
 	private int id;
 	private String code;
@@ -110,4 +112,12 @@ public class Vendor {
 		this.preApproved = preApproved;
 	}
 	
+	@Override
+	public String toString() {
+		return StringUtils.padWithSpaces("  "  + id, 10) + StringUtils.padWithSpaces(code+"     ", 15) +
+			   StringUtils.padWithSpaces(name, 35) + StringUtils.padWithSpaces(address, 35) + 
+			   StringUtils.padWithSpaces(city, 20) + StringUtils.padWithSpaces(state, 15) +
+			   StringUtils.padWithSpaces(zip, 15) + StringUtils.padWithSpaces(phoneNumber, 10) +
+			   StringUtils.padWithSpaces(email, 15) + StringUtils.padWithSpaces(preApproved+"", 35) + "\n";
+	}
 }

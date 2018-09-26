@@ -1,8 +1,10 @@
 package prs.business;
 
+import prs.utility.StringUtils;
+
 public class User {
 	private int id;
-	private String UserName;
+	private String userName;
 	private String password;
 	private String firstName;
 	private String lastName;
@@ -18,7 +20,7 @@ public class User {
 	public User(int id, String userName, String password, String firstName, String lastName, String phoneNumber,
 			String email, boolean isReviewer, boolean isAdmin) {
 		this.id = id;
-		UserName = userName;
+		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -37,11 +39,11 @@ public class User {
 	}
 
 	public String getUserName() {
-		return UserName;
+		return userName;
 	}
 
 	public void setUserName(String userName) {
-		UserName = userName;
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -100,7 +102,13 @@ public class User {
 		this.admin = admin;
 	}
 
-	
+	@Override
+	public String toString() {
+		return StringUtils.padWithSpaces("  "  + id, 10) + StringUtils.padWithSpaces(userName, 20) +
+			   StringUtils.padWithSpaces(password, 20) + StringUtils.padWithSpaces(firstName, 20) + 
+			   StringUtils.padWithSpaces(lastName, 20) + StringUtils.padWithSpaces(phoneNumber, 15) +
+			   StringUtils.padWithSpaces(reviewer+"", 15) + StringUtils.padWithSpaces(admin+"", 10) + "\n";
+	}
 	
 	
 }

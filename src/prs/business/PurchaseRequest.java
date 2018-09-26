@@ -1,6 +1,9 @@
 package prs.business;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import prs.utility.StringUtils;
 
 public class PurchaseRequest {
 	private int id;
@@ -11,7 +14,7 @@ public class PurchaseRequest {
 	private String deliveryMode;
 	private String status;
 	private double total;
-	private LocalDate submittedDate;
+	private LocalDateTime submittedDate;
 	private String reasonForRejection;
 	
 	public PurchaseRequest() {
@@ -19,7 +22,7 @@ public class PurchaseRequest {
 	}
 
 	public PurchaseRequest(int id, int userID, String description, String justification, LocalDate dateNeeded,
-						   String deliveryMode, String status, double total, LocalDate submittedDate, String reasonForRejection) {
+						   String deliveryMode, String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
 		this.id = id;
 		this.userID = userID;
 		this.description = description;
@@ -96,11 +99,11 @@ public class PurchaseRequest {
 		this.total = total;
 	}
 
-	public LocalDate getSubmittedDate() {
+	public LocalDateTime getSubmittedDate() {
 		return submittedDate;
 	}
 
-	public void setSubmittedDate(LocalDate submittedDate) {
+	public void setSubmittedDate(LocalDateTime submittedDate) {
 		this.submittedDate = submittedDate;
 	}
 
@@ -112,5 +115,13 @@ public class PurchaseRequest {
 		this.reasonForRejection = reasonForRejection;
 	}
 	
+	@Override
+	public String toString() {
+		return StringUtils.padWithSpaces("  "  + id, 10) + StringUtils.padWithSpaces(userID+"     ", 15) +
+			   StringUtils.padWithSpaces(description, 35) + StringUtils.padWithSpaces(justification, 35) + 
+			   StringUtils.padWithSpaces(dateNeeded+"", 15) + StringUtils.padWithSpaces(deliveryMode, 15) +
+			   StringUtils.padWithSpaces(status, 15) + StringUtils.padWithSpaces(total+"", 10) +
+			   StringUtils.padWithSpaces(submittedDate+"", 15) + StringUtils.padWithSpaces(reasonForRejection, 35) + "\n";
+	}
 	
 }

@@ -1,7 +1,5 @@
 package prs.business;
 
-import java.time.format.DateTimeFormatter;
-
 import prs.utility.StringUtils;
 
 public class Product {
@@ -25,6 +23,12 @@ public class Product {
 		this.price = price;
 		this.unit = unit;
 		this.photoPath = photoPath;
+	}
+	public Product(int vendorID, String partNumber, String name, double price) {
+		this.vendorID = vendorID;
+		this.partNumber = partNumber;
+		this.name = name;
+		this.price = price;
 	}
 
 	public int getId() {

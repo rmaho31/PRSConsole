@@ -1,5 +1,7 @@
 package prs.business;
 
+import prs.utility.StringUtils;
+
 public class PurchaseRequestLineItem {
 	private int id;
 	private int purchaseRequestID;
@@ -48,6 +50,9 @@ public class PurchaseRequestLineItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return StringUtils.padWithSpaces("  "  + id, 10) + StringUtils.padWithSpaces(purchaseRequestID+"     ", 15) +
+			   StringUtils.padWithSpaces(productID+"", 15) + StringUtils.padWithSpaces(quantity+"", 15) + "\n";
+	}
 }
