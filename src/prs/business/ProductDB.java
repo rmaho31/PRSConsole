@@ -9,38 +9,18 @@ import java.util.List;
 import prs.db.DBUtil;
 
 public class ProductDB {
-
-	public List<Product> get(boolean isCompleted) {
-		List<Product> product = new ArrayList<>();
-		int value = isCompleted ? 1 : 0;
-		try (Connection connect = DBUtil.getConnection();
-			//setup the prepared statement to select completed entries
-			PreparedStatement ps = connect.prepareStatement("select * from Products where isCompleted = ?");) {
-			ps.setInt(1, value);
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				
-				Product t = new Product();
-				product.add(t);
-			}
-		} catch (SQLException e) {
-			System.out.println("Error reading the database.");
-			e.printStackTrace();
-		}
-		return product;
-	}
 	
 	public Product getbyID(int id) {
 		Product product = null;
 		try (Connection connect = DBUtil.getConnection();
 			//setup the prepared statement to select a row by id
-			PreparedStatement ps = connect.prepareStatement("select * from product");) {
+			PreparedStatement ps = connect.prepareStatement("select * from product where id = ?");) {
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				
-				product = new Product();
+				product = getProduct(rs);
 			}
 		} catch (SQLException e) {
 			System.out.println("Error reading the database.");
@@ -59,8 +39,7 @@ public class ProductDB {
 			
 			while(rs.next()) {
 				
-				Product t = new Product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
-										rs.getString(6), rs.getString(7));
+				Product t = getProduct(rs);
 				product.add(t);
 			}
 
@@ -71,55 +50,63 @@ public class ProductDB {
 		return product;
 	}
 
-	public boolean add(Product t) {
+	public boolean add(Product p) {
 		try (Connection connect = DBUtil.getConnection()) { 
 
             // Sets up the preparedStatement for inputting the values into the DB from the input Array
             PreparedStatement ps = connect
-                    .prepareStatement("insert into products (Product, CompleteBy)" + 
-                    		 " values (?, ?)");
-            ps.setString(1, t.getPartNumber());
-            ps.setString(2, t.getPartNumber());
+                    .prepareStatement("insert into product (VendorID, partNumber, name, price)" + 
+                    		 " values (?, ?, ?, ?)");
+            ps.setInt(1, p.getVendorID());
+            ps.setString(2, p.getPartNumber());
+            ps.setString(3, p.getName());
+            ps.setDouble(4, p.getPrice());
             ps.executeUpdate();
 
            
 
         } catch (SQLException e) {
         	System.out.println("Error writing to the database.");
+        	e.printStackTrace();
         }
 		return false;
 	}
 
-	public boolean update(Product t) {
+	public boolean update(Product p) {
 		try (Connection connect = DBUtil.getConnection()) { 
 
             // Sets up the preparedStatement for updating the values into the DB from the input Array
             PreparedStatement ps = connect
-                    .prepareStatement("UPDATE products SET product = ?, CompleteBy = ?, isCompleted = ? WHERE id = ?");
-            ps.setInt(1, t.getId());
-            ps.setString(2, t.getPhotoPath());
-            ps.setInt(3, t.getVendorID());
-            ps.setInt(4, t.getId());
+                    .prepareStatement("UPDATE product SET name = ? WHERE id = ?");
+            ps.setString(1, p.getName());
+            ps.setDouble(2, p.getId());
             ps.executeUpdate();
 
            
 
         } catch (SQLException e) {
         	System.out.println("Error updating the database.");
+        	e.printStackTrace();
         }
 		return false;
 	}
 
-	public boolean delete(Product t) {
+	public boolean delete(Product p) {
 		try (Connection connect = DBUtil.getConnection();
 				
 				//setup the prepared statement to delete a row from the db by id
-				PreparedStatement ps = connect.prepareStatement("delete from products where id = ?");) {
-				ps.setInt(1, t.getId());
+				PreparedStatement ps = connect.prepareStatement("delete from product where id = ?");) {
+				ps.setInt(1, p.getId());
 				ps.executeUpdate();
 			} catch (SQLException | NullPointerException e) {
 				System.out.println("Error writing to the database, check name and try again?");
+				e.printStackTrace();
 			}
 		return false;
+	}
+	private Product getProduct(ResultSet rs) throws SQLException {
+		Product p = new Product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
+							    rs.getString(6), rs.getString(7));
+		return p;
 	}
 }
