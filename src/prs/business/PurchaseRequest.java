@@ -34,6 +34,31 @@ public class PurchaseRequest {
 		this.submittedDate = submittedDate;
 		this.reasonForRejection = reasonForRejection;
 	}
+	
+	public PurchaseRequest(String description, String justification, LocalDate dateNeeded,
+			   String deliveryMode, String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
+		this.description = description;
+		this.justification = justification;
+		this.dateNeeded = dateNeeded;
+		this.deliveryMode = deliveryMode;
+		this.status = status;
+		this.total = total;
+		this.submittedDate = submittedDate;
+		this.reasonForRejection = reasonForRejection;
+	}
+	
+	public PurchaseRequest(String description, String justification, LocalDate dateNeeded, User user,
+			   String deliveryMode, String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
+		this.description = description;
+		this.justification = justification;
+		this.dateNeeded = dateNeeded;
+		this.deliveryMode = deliveryMode;
+		this.status = status;
+		this.total = total;
+		this.submittedDate = submittedDate;
+		this.reasonForRejection = reasonForRejection;
+	}
+	
 
 	public int getId() {
 		return id;
@@ -117,11 +142,10 @@ public class PurchaseRequest {
 	
 	@Override
 	public String toString() {
-		return StringUtils.padWithSpaces("  "  + id, 10) + StringUtils.padWithSpaces(userID+"     ", 15) +
+		return StringUtils.padWithSpaces("  "  + id, 10) + StringUtils.padWithSpaces(userID+"     ", 10) +
 			   StringUtils.padWithSpaces(description, 35) + StringUtils.padWithSpaces(justification, 35) + 
 			   StringUtils.padWithSpaces(dateNeeded+"", 15) + StringUtils.padWithSpaces(deliveryMode, 15) +
-			   StringUtils.padWithSpaces(status, 15) + StringUtils.padWithSpaces(total+"", 10) +
-			   StringUtils.padWithSpaces(submittedDate+"", 15) + StringUtils.padWithSpaces(reasonForRejection, 35) + "\n";
-	}
-	
+			   StringUtils.padWithSpaces(status, 20) + StringUtils.padWithSpaces(total+"", 15) +
+			   StringUtils.padWithSpaces(submittedDate+"", 20) + StringUtils.padWithSpaces(reasonForRejection, 25) + "\n";
+	}	
 }

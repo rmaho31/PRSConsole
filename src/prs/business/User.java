@@ -29,6 +29,18 @@ public class User {
 		this.reviewer = isReviewer;
 		this.admin = isAdmin;
 	}
+	
+	public User(String userName, String password, String firstName, String lastName, String phoneNumber,
+			String email, boolean isReviewer, boolean isAdmin) {
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.reviewer = isReviewer;
+		this.admin = isAdmin;
+	}
 
 	public int getId() {
 		return id;
@@ -107,8 +119,8 @@ public class User {
 		return StringUtils.padWithSpaces("  "  + id, 10) + StringUtils.padWithSpaces(userName, 20) +
 			   StringUtils.padWithSpaces(password, 20) + StringUtils.padWithSpaces(firstName, 20) + 
 			   StringUtils.padWithSpaces(lastName, 20) + StringUtils.padWithSpaces(phoneNumber, 15) +
-			   StringUtils.padWithSpaces(reviewer+"", 15) + StringUtils.padWithSpaces(admin+"", 10) + "\n";
+			   StringUtils.padWithSpaces(email, 35) + StringUtils.padWithSpaces(reviewer+"", 15) + 
+			   StringUtils.padWithSpaces(admin+"", 15) + "\n";
 	}
-	
 	
 }

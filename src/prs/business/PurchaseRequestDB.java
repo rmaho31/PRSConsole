@@ -31,8 +31,8 @@ public class PurchaseRequestDB {
 		return purchaseRequest;
 	}
 
-	public List<PurchaseRequest> getAll() {
-		List<PurchaseRequest> purchaseRequest = new ArrayList<>();
+	public List<Object> getAll() {
+		List<Object> purchaseRequest = new ArrayList<>();
 		try (Connection connect = DBUtil.getConnection()) { 
 					
 			// Sets up the preparedStatement for returning all values from the DB into an arraylist

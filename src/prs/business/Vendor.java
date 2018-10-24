@@ -31,6 +31,19 @@ public class Vendor {
 		this.email = email;
 		this.preApproved = isPreApproved;
 	}
+	
+	public Vendor(String code, String name, String address, String city, String state, String zip,
+			String phoneNumber, String email, boolean isPreApproved) {
+		this.code = code;
+		this.name = name;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.preApproved = isPreApproved;
+	}
 
 	public int getId() {
 		return id;
@@ -114,10 +127,10 @@ public class Vendor {
 	
 	@Override
 	public String toString() {
-		return StringUtils.padWithSpaces("  "  + id, 10) + StringUtils.padWithSpaces(code+"     ", 15) +
-			   StringUtils.padWithSpaces(name, 35) + StringUtils.padWithSpaces(address, 35) + 
-			   StringUtils.padWithSpaces(city, 20) + StringUtils.padWithSpaces(state, 15) +
-			   StringUtils.padWithSpaces(zip, 15) + StringUtils.padWithSpaces(phoneNumber, 10) +
-			   StringUtils.padWithSpaces(email, 15) + StringUtils.padWithSpaces(preApproved+"", 35) + "\n";
+		return StringUtils.padWithSpaces("  "  + id, 10) + StringUtils.padWithSpaces(code+"     ", 10) +
+			   StringUtils.padWithSpaces(name, 20) + StringUtils.padWithSpaces(address, 35) + 
+			   StringUtils.padWithSpaces(city, 15) + StringUtils.padWithSpaces(state, 15) +
+			   StringUtils.padWithSpaces(zip, 10) + StringUtils.padWithSpaces(phoneNumber, 15) +
+			   StringUtils.padWithSpaces(email, 35) + StringUtils.padWithSpaces(preApproved+"", 15) + "\n";
 	}
 }

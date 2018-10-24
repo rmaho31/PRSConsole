@@ -29,8 +29,8 @@ public class PurchaseRequestLineItemDB {
 		return purchaseRequestLineItem;
 	}
 
-	public List<PurchaseRequestLineItem> getAll() {
-		List<PurchaseRequestLineItem> purchaseRequestLineItem = new ArrayList<>();
+	public List<Object> getAll() {
+		List<Object> purchaseRequestLineItem = new ArrayList<>();
 		try (Connection connect = DBUtil.getConnection()) { 
 					
 			// Sets up the preparedStatement for returning all values from the DB into an arraylist
@@ -50,15 +50,15 @@ public class PurchaseRequestLineItemDB {
 		return purchaseRequestLineItem;
 	}
 
-	public boolean add(PurchaseRequestLineItem prli, PurchaseRequest pr, Product p) {
+	public boolean add(PurchaseRequestLineItem prli) {
 		try (Connection connect = DBUtil.getConnection()) { 
 
             // Sets up the preparedStatement for inputting the values into the DB from the input Array
             PreparedStatement ps = connect
                     .prepareStatement("insert into purchaseRequestLineItem (PurchaseRequestID, ProductID,"
                     		+ " Quantity) values (?, ?, ?)");
-            ps.setInt(1, pr.getId());
-            ps.setInt(2, p.getId());
+            ps.setInt(1, prli.getPurchaseRequestID());
+            ps.setInt(2, prli.getProductID());
             ps.setInt(3, prli.getQuantity());
             ps.executeUpdate();           
 
@@ -70,14 +70,14 @@ public class PurchaseRequestLineItemDB {
 		return true;
 	}
 
-	public boolean update(PurchaseRequestLineItem prli, PurchaseRequest pr, Product p) {
+	public boolean update(PurchaseRequestLineItem prli) {
 		try (Connection connect = DBUtil.getConnection()) { 
 
             // Sets up the preparedStatement for updating the values into the DB from the input Array
             PreparedStatement ps = connect
                     .prepareStatement("UPDATE purchaseRequestLineItem SET PurchaseRequestID = ?, ProductID = ?, Quantity = ? WHERE id = ?");
-            ps.setInt(1, pr.getId());
-            ps.setInt(2, p.getId());
+            ps.setInt(1, prli.getPurchaseRequestID());
+            ps.setInt(2, prli.getProductID());
             ps.setInt(3, prli.getQuantity());
             ps.executeUpdate();              
 

@@ -29,8 +29,8 @@ public class UserDB {
 		return user;
 	}
 
-	public List<User> getAll() {
-		List<User> user = new ArrayList<>();
+	public List<Object> getAll() {
+		List<Object> user = new ArrayList<>();
 		try (Connection connect = DBUtil.getConnection()) { 
 					
 			// Sets up the preparedStatement for returning all values from the DB into an arraylist
@@ -57,7 +57,7 @@ public class UserDB {
             PreparedStatement ps = connect
                     .prepareStatement("insert into user (username, password, FirstName, LastName, "
                     		+ "PhoneNumber, Email, IsReviewer, IsAdmin)" + 
-                    		 " values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    		 " values (?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, u.getUserName());
             ps.setString(2, u.getPassword());
             ps.setString(3, u.getFirstName());
@@ -81,7 +81,7 @@ public class UserDB {
 
             // Sets up the preparedStatement for updating the values into the DB from the input Array
             PreparedStatement ps = connect
-                    .prepareStatement("UPDATE user SET ID = ?, username = ?, password = ?, FirstName = ?, LastName = ?, " + 
+                    .prepareStatement("UPDATE user SET username = ?, password = ?, FirstName = ?, LastName = ?, " + 
                     				  "PhoneNumber = ?, Email = ?, IsReviewer = ?, IsAdmin = ? WHERE id = ?");
             ps.setString(1, u.getUserName());
             ps.setString(2, u.getPassword());

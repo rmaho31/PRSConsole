@@ -31,19 +31,16 @@ public class Console {
 	 */
 	public static int getInt(String prompt, int min, int max) {
 		int i = 0;
-        boolean isValid = false;
-        while (!isValid) {
             i = getInt(prompt);
             if (i <= min) {
                 System.out.println(
                         "\nError! Number must be greater than " + min + ".\n");
+                getInt(prompt, min, max);
             } else if (i >= max) {
                 System.out.println(
                         "\nError! Number must be less than " + max + ".\n");
-            } else {
-                isValid = true;
-            }
-        }
+                getInt(prompt, min, max);
+            } 
         return i;
 	}
 	

@@ -29,8 +29,8 @@ public class VendorDB {
 		return vendor;
 	}
 
-	public List<Vendor> getAll() {
-		List<Vendor> vendor = new ArrayList<>();
+	public List<Object> getAll() {
+		List<Object> vendor = new ArrayList<>();
 		try (Connection connect = DBUtil.getConnection()) { 
 					
 			// Sets up the preparedStatement for returning all values from the DB into an arraylist

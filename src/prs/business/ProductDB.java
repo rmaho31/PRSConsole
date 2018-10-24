@@ -29,8 +29,8 @@ public class ProductDB {
 		return product;
 	}
 
-	public List<Product> getAll() {
-		List<Product> product = new ArrayList<>();
+	public List<Object> getAll() {
+		List<Object> product = new ArrayList<>();
 		try (Connection connect = DBUtil.getConnection()) { 
 					
 			// Sets up the preparedStatement for returning all values from the DB into an arraylist
